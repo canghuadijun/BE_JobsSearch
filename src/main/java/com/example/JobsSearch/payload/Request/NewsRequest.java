@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 public class NewsRequest {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @NotBlank
     private LocalDateTime opensAt;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -33,12 +32,10 @@ public class NewsRequest {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @NotBlank
     private LocalDateTime eventStartAt;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @NotBlank
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime eventEndAt;
 
     public LocalDateTime getOpensAt() {
