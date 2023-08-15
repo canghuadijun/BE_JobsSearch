@@ -111,6 +111,7 @@ public class Job {
   private String productCode;
 
   @OneToMany(mappedBy = "primaryKey.job", cascade = CascadeType.ALL)
+  @JsonIgnore
   private Set<History> histories = new HashSet<>();
 
   public Job(
