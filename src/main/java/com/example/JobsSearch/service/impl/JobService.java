@@ -624,7 +624,17 @@ public class JobService {
   }
 
   public ResponseObject getLikedSeekerHistoriesByJobId(Long userId, Long jobId) {
-    getJobByIdByOrganization(userId, jobId);
+    if (hiringOrganizationRepository.findByUserId(userId).isEmpty()) {
+      return ResponseObject.message("There Aren't any HR with the requested Id");
+    }
+    if (jobRepository.findById(jobId).isEmpty()) {
+      return ResponseObject.message("There Aren't any job with the requested Id");
+    }
+    HiringOrganization organization = hiringOrganizationRepository.findByUserId(userId).get();
+    Job job = jobRepository.findById(jobId).get();
+    if (!job.getOrganization().getId().equals(organization.getId())) {
+      return ResponseObject.message("this job does not belong to this organization");
+    }
     List<History> likedHistories =
         historyRepository.findByPrimaryKeyJobIdAndInteractionType(jobId, InteractionType.LIKE);
     List<Seeker> likedSeekers =
